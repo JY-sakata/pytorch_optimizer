@@ -110,6 +110,7 @@ from pytorch_optimizer.optimizer.utils import (
     unit_norm,
 )
 from pytorch_optimizer.optimizer.yogi import Yogi
+from pytorch_optimizer.optimizer.adabelief2 import AdaBelief2
 
 OPTIMIZER_LIST: List[OPTIMIZER] = [
     AdaBelief,
@@ -171,6 +172,7 @@ OPTIMIZER_LIST: List[OPTIMIZER] = [
     LOMO,
     Tiger,
     CAME,
+    AdaBelief2,
 ]
 OPTIMIZERS: Dict[str, OPTIMIZER] = {str(optimizer.__name__).lower(): optimizer for optimizer in OPTIMIZER_LIST}
 

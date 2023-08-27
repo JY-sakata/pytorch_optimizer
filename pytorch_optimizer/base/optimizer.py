@@ -101,6 +101,7 @@ class BaseOptimizer(ABC):
             for h_z, z, p in zip(h_zs, zs, params):
                 state[p]['hessian'].add_(h_z * z, alpha=alpha / num_samples)
 
+
     @staticmethod
     def apply_weight_decay(
         p: torch.Tensor,

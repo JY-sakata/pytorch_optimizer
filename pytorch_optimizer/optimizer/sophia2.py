@@ -8,7 +8,7 @@ from pytorch_optimizer.base.optimizer import BaseOptimizer
 from pytorch_optimizer.base.types import BETAS, CLOSURE, DEFAULTS, HUTCHINSON_G, LOSS, PARAMETERS
 
 
-class SophiaH(Optimizer, BaseOptimizer):
+class SophiaH2(Optimizer, BaseOptimizer):
     r"""Second-order Clipped Stochastic Optimization.
 
         Requires `loss.backward(create_graph=True)` in order to calculate hessians.
@@ -65,7 +65,7 @@ class SophiaH(Optimizer, BaseOptimizer):
         super().__init__(params, defaults)
 
     def __str__(self) -> str:
-        return 'SophiaH'
+        return 'SophiaH2'
 
     @torch.no_grad()
     def reset(self):
@@ -131,8 +131,8 @@ class SophiaH(Optimizer, BaseOptimizer):
                 if 'hessian' in state and (group['step'] % self.update_period == 0 or hessian is not None):
                     hessian_moment.mul_(beta2).add_(state['hessian'], alpha=1.0 - beta2)
 
+                hessian_moment.abs_()
                 update = (momentum / torch.clip(hessian_moment, min=group['eps'])).clamp_(-group['p'], group['p'])
                 p.add_(update, alpha=-group['lr'])
-
 
         return loss

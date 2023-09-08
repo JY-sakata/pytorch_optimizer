@@ -34,7 +34,7 @@ class SophiaH2(Optimizer, BaseOptimizer):
         weight_decay: float = 0.0,
         weight_decouple: bool = True,
         fixed_decay: bool = False,
-        p: float = 1e-2,
+        p: float = 1e-1,
         update_period: int = 10,
         num_samples: int = 1,
         hessian_distribution: HUTCHINSON_G = 'gaussian',
